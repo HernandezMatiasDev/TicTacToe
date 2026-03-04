@@ -1,0 +1,200 @@
+﻿using System;
+using System.Collections.Generic; // Necesario para guardar el historial de jugadas
+
+namespace TaTeTi_1._0
+{
+    class Program // BotVsBot
+    {
+        static void Main(string[] args)
+        {
+            // ==========================================
+            // CONFIGURACIÓN DE LA SIMULACIÓN
+            // ==========================================
+            bool consoleClear = true;
+            
+            int totalPartidas = 1000; 
+
+            Bot bot1 = new BotHardDefault(); // Bot 1 jugará con las 'X' (Player 1)
+            Bot bot2 = new BotEasy(); // Bot 2 jugará con las 'O' (Player 2)
+
+            bool mostrarTableros = false;
+
+            // ¡NUEVA CONFIGURACIÓN! 
+            // Si es true, cuando alguien gane, te mostrará la partida paso a paso.
+            bool repasarVictorias = true;
+            // colocar los nombres de los bots que quieras ver las victorias
+            var repasarBot = new[] { "BotHardDefault", "BotEasy" }; // por ejemplo si solo queremos ver las victorias del bot facil {"BotEasy"}
+            // ==========================================
+
+            Game game = new Game();
+
+            int partidasJugadas = 0;
+            int bot1Victorias = 0;
+            int bot2Victorias = 0;
+            int empates = 0;
+
+            byte lastP1Score = 0;
+            byte lastP2Score = 0;
+
+            // Aquí guardaremos las jugadas de la partida actual
+            List<(byte fila, byte col, bool isX)> historialJugadas = new List<(byte, byte, bool)>();
+
+            Console.WriteLine($"Iniciando simulación de {totalPartidas} partidas...");
+            Console.WriteLine($"Enfrentamiento: {bot1.GetType().Name} (X) VS {bot2.GetType().Name} (O)");
+            Console.WriteLine("Calculando...\n");
+
+            while (partidasJugadas < totalPartidas)
+            {
+                if (mostrarTableros && !repasarVictorias) // Evitar limpiar la consola si estamos viendo una repetición
+                {
+                    if(consoleClear)Console.Clear();
+                    PrintBoard(game.GameState);
+                }
+
+                bool isPlayer1Turn = game.Player;
+                Bot botActual = isPlayer1Turn ? bot1 : bot2;
+
+                botActual.GameState = game.GameState;
+                byte[] jugadaBot = botActual.playing(isPlayer1Turn);
+
+                // Guardar la jugada en el historial ANTES de ejecutarla
+                historialJugadas.Add((jugadaBot[0], jugadaBot[1], isPlayer1Turn));
+
+                bool sigueJuego = game.newMove(jugadaBot[0], jugadaBot[1]);
+
+                if (!sigueJuego && EsTableroVacio(game.GameState))
+                {
+                    partidasJugadas++;
+                    bool huboGanador = false;
+                    string nombreGanador = "";
+                    string nombre = "";
+
+                    if (game.Player1Score != lastP1Score)
+                    {
+                        bot1Victorias++;
+                        lastP1Score = game.Player1Score;
+                        huboGanador = true;
+                        nombreGanador = $"{bot1.GetType().Name} (X)";
+                        nombre = bot1.GetType().Name;
+                    }
+                    else if (game.Player2Score != lastP2Score)
+                    {
+                        bot2Victorias++;
+                        lastP2Score = game.Player2Score;
+                        huboGanador = true;
+                        nombreGanador = $"{bot2.GetType().Name} (O)";
+                        nombre = bot2.GetType().Name;
+                    }
+                    else
+                    {
+                        empates++;
+                    }
+
+                    // Si alguien ganó y la opción está activada, repasamos la partida
+                    if (huboGanador && repasarVictorias && repasarBot.Contains(nombre))
+                    {
+                        RepasarPartida(historialJugadas, nombreGanador, consoleClear);
+                    }
+
+                    // Limpiamos el historial para la siguiente partida
+                    historialJugadas.Clear();
+                }
+                else if (!sigueJuego)
+                {
+                    Console.WriteLine($"\n[ERROR] El {botActual.GetType().Name} intentó un movimiento inválido en fila {jugadaBot[0]}, col {jugadaBot[1]}.");
+                    return; 
+                }
+            }
+
+            // --- MOSTRAR ESTADÍSTICAS ---
+            MostrarCuadroEstadistico(partidasJugadas, bot1, bot2, bot1Victorias, bot2Victorias, empates);
+            
+            Console.WriteLine("\nPresiona cualquier tecla para salir...");
+            Console.ReadKey();
+        }
+
+        // --- NUEVO MÉTODO PARA REPASAR PARTIDAS ---
+        static void RepasarPartida(List<(byte fila, byte col, bool isX)> movimientos, string ganador, bool consoleClear)
+        {
+            if(consoleClear)Console.Clear();
+            Console.WriteLine($"==================================================");
+            Console.WriteLine($" ¡ATENCIÓN!.");
+            Console.WriteLine($" Hubo una victoria de: {ganador}");
+            Console.WriteLine($"==================================================");
+            Console.WriteLine("Presiona ENTER para ver la partida paso a paso...");
+            Console.ReadLine();
+
+            // Creamos un tablero temporal en blanco
+            bool?[,] tableroRepeticion = new bool?[3, 3];
+            int turno = 1;
+
+            foreach (var jugada in movimientos)
+            {
+                if(consoleClear)Console.Clear();
+                string jugadorStr = jugada.isX ? "X" : "O";
+                Console.WriteLine($"Turno {turno}: El jugador {jugadorStr} juega en [Fila: {jugada.fila}, Col: {jugada.col}]");
+                Console.WriteLine("-----------------------------------------");
+                
+                // Aplicamos la jugada al tablero temporal
+                tableroRepeticion[jugada.fila, jugada.col] = jugada.isX;
+                
+                PrintBoard(tableroRepeticion);
+                
+                Console.WriteLine("\nPresiona ENTER para la siguiente jugada...");
+                Console.ReadLine();
+                turno++;
+            }
+
+            Console.WriteLine("FIN DE LA REPETICIÓN.");
+            Console.WriteLine("Presiona ENTER para continuar con la simulación global...");
+            Console.ReadLine();
+        }
+
+        // --- Métodos Auxiliares ---
+        static void MostrarCuadroEstadistico(int total, Bot b1, Bot b2, int victoriasB1, int victoriasB2, int empates)
+        {
+            double pctB1 = (double)victoriasB1 / total * 100;
+            double pctB2 = (double)victoriasB2 / total * 100;
+            double pctEmpates = (double)empates / total * 100;
+
+            Console.WriteLine("==================================================");
+            Console.WriteLine("           RESULTADOS DE LA SIMULACIÓN            ");
+            Console.WriteLine("==================================================");
+            Console.WriteLine($" Partidas totales jugadas : {total}");
+            Console.WriteLine("--------------------------------------------------");
+            Console.WriteLine($" {b1.GetType().Name} (Bot 1 - X) Ganadas : {victoriasB1}  ({pctB1:0.00}%)");
+            Console.WriteLine($" {b2.GetType().Name} (Bot 2 - O) Ganadas : {victoriasB2}  ({pctB2:0.00}%)");
+            Console.WriteLine($" Empates                    : {empates}  ({pctEmpates:0.00}%)");
+            Console.WriteLine("==================================================");
+        }
+
+        static void PrintBoard(bool?[,] board)
+        {
+            Console.WriteLine("    0   1   2");
+            Console.WriteLine("  +---+---+---+");
+            for (int i = 0; i < 3; i++)
+            {
+                Console.Write(i + " |");
+                for (int j = 0; j < 3; j++)
+                {
+                    string marca = "   ";
+                    if (board[i, j] == true) marca = " X ";
+                    else if (board[i, j] == false) marca = " O ";
+                    
+                    Console.Write(marca + "|");
+                }
+                Console.WriteLine();
+                Console.WriteLine("  +---+---+---+");
+            }
+        }
+
+        static bool EsTableroVacio(bool?[,] board)
+        {
+            foreach (var celda in board)
+            {
+                if (celda != null) return false;
+            }
+            return true;
+        }
+    }
+}

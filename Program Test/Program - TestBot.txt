@@ -1,0 +1,132 @@
+﻿using System;
+namespace TaTeTi_1._0
+{
+    class Program //TestBot
+    {
+        static void Main(string[] args)
+        {
+            // variable de configuracion
+            // si es true se limpia la consola despues de cada jugada
+            bool consoleClear = true;
+
+            Game game = new Game();
+
+            // Puedes cambiar BotEasy por BotVeryEasy si quieres probar el fácil primero
+            Bot botOponente = new BotHard();
+            
+            
+            Console.WriteLine("=== TÚ (X) vs BOT (O) ===");
+            Console.WriteLine("Instrucciones: Ingresa números del 0 al 2.");
+            Console.WriteLine("-----------------------------------------");
+
+            while (true) // Bucle infinito del juego
+            {
+                // 1. Dibujar Tablero
+                if(consoleClear)Console.Clear();
+                Console.WriteLine($"Marcador: Tú (X): {game.Player1Score} | Bot (O): {game.Player2Score}");
+                Console.WriteLine("-----------------------------------------");
+                PrintBoard(game.GameState);
+                Console.WriteLine("-----------------------------------------");
+
+                // 2. Verificar turno
+                // colocar !game.Player para empezar segundo
+                // y cambiar "byte[] jugadaBot = botOponente.playing(false);" por true
+                if (game.Player) // Si es TRUE, es tu turno (Jugador X)
+                {
+                    Console.WriteLine(">> TU TURNO (X)");
+                    
+                    byte fila = PedirNumero("Fila (0-2): ");
+                    byte col = PedirNumero("Columna (0-2): ");
+
+                    // Intentar movimiento
+                    // newMove devuelve FALSE si gana, empata O si la casilla está ocupada.
+                    bool sigueJuego = game.newMove(fila, col);
+
+                    if (!sigueJuego)
+                    {
+                        // Hay que distinguir si fue "Juego Terminado" o "Movimiento Inválido"
+                        if (EsTableroVacio(game.GameState)) 
+                        {
+                            Console.WriteLine("¡Juego Terminado! (Presiona una tecla)");
+                            Console.ReadKey();
+                        }
+                        else
+                        {
+                            Console.WriteLine("¡Casilla ocupada! Intenta de nuevo. (Presiona una tecla)");
+                            Console.ReadKey();
+                        }
+                    }
+                }
+                else // Es FALSE, turno del BOT (Jugador O)
+                {
+                    Console.WriteLine(">> Turno del BOT (O)... Pensando...");
+                    
+                    // IMPORTANTE: Actualizar la visión del bot
+                    botOponente.GameState = game.GameState;
+
+                    // Obtener jugada del bot
+                    byte[] jugadaBot = botOponente.playing(false); // cambiar a true para que juegue primero
+
+                    // Ejecutar jugada
+                    bool sigueJuego = game.newMove(jugadaBot[0], jugadaBot[1]);
+                    Console.WriteLine(jugadaBot[1]);
+                    Console.WriteLine(jugadaBot[0]);
+                    if (!sigueJuego && EsTableroVacio(game.GameState))
+                    {
+                        if(consoleClear)Console.Clear();
+                        PrintBoard(game.GameState); // Mostrará vacío porque se reseteó
+                        Console.WriteLine("¡El Bot ha terminado el juego! (Presiona una tecla)");
+                        Console.ReadKey();
+                    }
+                }
+            }
+        }
+
+        // --- Métodos Auxiliares ---
+
+        static byte PedirNumero(string mensaje)
+        {
+            byte numero;
+            while (true)
+            {
+                Console.Write(mensaje);
+                string input = Console.ReadLine();
+                if (byte.TryParse(input, out numero) && numero >= 0 && numero <= 2)
+                {
+                    return numero;
+                }
+                Console.WriteLine("Error: Ingresa un número válido entre 0 y 2.");
+            }
+        }
+
+        static void PrintBoard(bool?[,] board)
+        {
+            Console.WriteLine("    0   1   2"); // Encabezado columnas
+            Console.WriteLine("  +---+---+---+");
+            for (int i = 0; i < 3; i++)
+            {
+                Console.Write(i + " |"); // Encabezado filas
+                for (int j = 0; j < 3; j++)
+                {
+                    string marca = "   ";
+                    if (board[i, j] == true) marca = " X ";
+                    else if (board[i, j] == false) marca = " O ";
+                    
+                    Console.Write(marca + "|");
+                }
+                Console.WriteLine();
+                Console.WriteLine("  +---+---+---+");
+            }
+        }
+
+        // Detecta si el juego se reseteó (significa que alguien ganó o hubo empate)
+        static bool EsTableroVacio(bool?[,] board)
+        {
+            foreach (var celda in board)
+            {
+                if (celda != null) return false;
+            }
+            return true;
+        }
+    }
+}

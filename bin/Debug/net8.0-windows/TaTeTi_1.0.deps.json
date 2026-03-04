@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "TaTeTi_1.0/1.0.0": {
+        "runtime": {
+          "TaTeTi_1.0.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "TaTeTi_1.0/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
