@@ -4,11 +4,10 @@ namespace TaTeTi_1._0
 {
     public class BotVeryEasy : Bot
     {
-
+        Random random = new Random();
         public override byte[] playing(bool player)
         {
             // returns a valid random location
-            Random random = new Random();
             byte row, col;
 
             do
