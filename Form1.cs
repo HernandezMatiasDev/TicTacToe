@@ -6,8 +6,28 @@ using System.Windows.Forms;
 
 namespace TaTeTi_1._0
 {
-    public partial class Form1 : Form
+    public class Form1 : Form
     {
+        // --- Componentes necesarios de Windows Forms ---
+        private System.ComponentModel.IContainer? components = null;
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        private void InitializeComponent()
+        {
+            this.components = new System.ComponentModel.Container();
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Text = "Ta-Te-Ti"; 
+        }
+        // -----------------------------------------------
+
         private SoundPlayer soundPlayer;
         private Game game = new Game();
         private Bot bot = null;
@@ -42,7 +62,6 @@ namespace TaTeTi_1._0
 
             BuildInterface();
         }
-
 
         // UI construction
         private void BuildInterface()

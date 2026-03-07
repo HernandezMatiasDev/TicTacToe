@@ -41,3 +41,4 @@ C:\Users\mario\Desktop\Developer\C#\TicTacToe full\TicTacToe\obj\Debug\net9.0-wi
 C:\Users\mario\Desktop\Developer\C#\TicTacToe full\TicTacToe\obj\Debug\net9.0-windows\TaTeTi_1.0.pdb
 C:\Users\mario\Desktop\Developer\C#\TicTacToe full\TicTacToe\obj\Debug\net9.0-windows\TaTeTi_1.0.genruntimeconfig.cache
 C:\Users\mario\Desktop\Developer\C#\TicTacToe full\TicTacToe\obj\Debug\net9.0-windows\ref\TaTeTi_1.0.dll
+C:\Users\mario\Desktop\Developer\C#\TicTacToe full\TicTacToe\obj\Debug\net9.0-windows\TaTeTi_1.0.sourcelink.json
