@@ -35,7 +35,7 @@ This file is only included to provide a graphical user interface (GUI) and make 
 
 <br>
 
-## Bot Logic
+## *Bot Logic*
 
 ### Bot.cs: 
 The abstract base class for all bots. It contains a 3x3 boolean matrix called GameState which represents the board. Bots use this state to make their decisions. It includes an abstract function called playing, which is called to trigger the bot's turn.
