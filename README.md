@@ -85,7 +85,7 @@ While it's sometimes impossible to completely avoid giving the enemy a somewhat 
 
 Example: Imagine the bot has a token at 0,1 and the enemy has one at 1,0. If the bot places a token at 0,2 to build a straight line, it forces the enemy to defend at 0,0. By forcing the enemy into 0,0, we give them a dominant position and end up losing the game. The bot calculates to avoid these scenarios.
 
-##Testing and Debugging
+### Testing and Debugging
 
 The files in the "Program Test" folder are scripts that I created with the help of Gemini AI specifically for testing the bots.
 
