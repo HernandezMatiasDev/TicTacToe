@@ -21,14 +21,14 @@ Instead of relying on predefined, sequential behaviors (like always starting in 
 
 - Expert: Plays the perfect game. It is impossible to defeat.
   
-<br>
+
 
 # File Structure & Architecture
 
  
 ### Game.cs: 
 The main game board. The board is represented by a 3x3 nullable boolean matrix. True represents one player, False represents the other, and null represents an empty space. This class also manages turn order, who starts the game, and checks for win/draw conditions.
-<br>
+
  
 ### Form1.cs: 
 This file is only included to provide a graphical user interface (GUI) and make it easier to play against the bots. It is not an important part of the core project logic and may contain errors.
