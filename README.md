@@ -20,7 +20,7 @@ Instead of relying on predefined, sequential behaviors (like always starting in 
 - Hard-Default: A standalone version of a specific algorithm (defaultTurn) used by the Expert bot. It acts as an upgraded version of the Medium bot.
 
 - Expert: Plays the perfect game. It is impossible to defeat.
-- 
+  
 <br>
 
 # File Structure & Architecture
