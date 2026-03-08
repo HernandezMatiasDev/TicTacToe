@@ -73,27 +73,31 @@ Second Turn (Attack) & Board Normalization: This is where the logic gets interes
 
 First Turn (Defense): This works very similarly to the second turn of an attack, but it's much simpler to calculate since there is only one enemy token on an otherwise empty board.
 
-Dynamic Logic (defaultTurn):
+### Dynamic Logic (defaultTurn):
+
+
 From the 3rd turn in Attack, or the 2nd turn in Defense, the bot stops using hardcoded responses and begins executing the defaultTurn function. This function is an upgraded version of the Medium bot's logic. While the code isn't strictly sequential, the general priority list is:
 
-Win: If there is a line with two friendly tokens, complete it.
 
-Block: If the previous step didn't happen and the enemy has a line with two tokens, block them to prevent a loss.
+- Win: If there is a line with two friendly tokens, complete it.
 
-Double Attack: If no one is about to win, try to execute a double attack (placing a token in a way that creates two separate winning spots for the next turn).
+- Block: If the previous step didn't happen and the enemy has a line with two tokens, block them to prevent a loss.
 
-Smart Straight Line: If a double attack isn't possible, try to build a straight line while benefiting the enemy as little as possible (explained below).
+- Double Attack: If no one is about to win, try to execute a double attack (placing a token in a way that creates two separate winning spots for the next turn).
 
-Block Lines: If building a straight line isn't possible, try to block the enemy's straight lines.
+- Smart Straight Line: If a double attack isn't possible, try to build a straight line while benefiting the enemy as little as possible (explained below).
 
-Random: If the enemy has no straight lines, play randomly.
+- Block Lines: If building a straight line isn't possible, try to block the enemy's straight lines.
 
-Minimizing Enemy Benefit:
+- Random: If the enemy has no straight lines, play randomly.
+
+### Minimizing Enemy Benefit:
 When the bot places a token (assuming it already has one on the board) to create a threat, it forces the enemy to defend immediately or lose. The bot must execute its attack in a way that forces the enemy to play their defensive token in a spot that does not help the enemy build their own lines.
 
 While it's sometimes impossible to completely avoid giving the enemy a somewhat useful spot, the goal is to minimize that benefit as much as possible.
 
-Example: Imagine the bot has a token at 0,1 and the enemy has one at 1,0. If the bot places a token at 0,2 to build a straight line, it forces the enemy to defend at 0,0. By forcing the enemy into 0,0, we give them a dominant position and end up losing the game. The bot calculates to avoid these scenarios.
+### Example: 
+Imagine the bot has a token at 0,1 and the enemy has one at 1,0. If the bot places a token at 0,2 to build a straight line, it forces the enemy to defend at 0,0. By forcing the enemy into 0,0, we give them a dominant position and end up losing the game. The bot calculates to avoid these scenarios.
 
 ## Testing and Debugging
 
