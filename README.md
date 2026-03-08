@@ -53,7 +53,6 @@ Inherits from BotEasy. The logic is identical to BotEasy, except it also evaluat
 (Class: BotHard). Inherits from Bot. Internally, it contains instances of BotExpert, BotMedium, and BotEasy. It has a 50% chance to play as Expert, 40% as Medium, and 10% as Easy. This combination makes it better than the Medium robot; the idea is that it looks like a "human" who knows how to play but can make mistakes.
 
 <br>
-<br> 
 
 
 | Matchup | Bot 1 Win Rate | Bot 2 Win Rate |
