@@ -10,15 +10,15 @@ Instead of relying on predefined, sequential behaviors (like always starting in 
 
 Very Easy: Places tokens in random available spots on the board.
 
-Easy: Attempts to build a straight line of tokens.
+- Easy: Attempts to build a straight line of tokens.
 
-Medium: Attempts to build a straight line, but will block the opponent if they are about to win (two tokens in a row).
+- Medium: Attempts to build a straight line, but will block the opponent if they are about to win (two tokens in a row).
 
-Hard-human: Simulates a highly skilled human player who occasionally makes mistakes.
+- Hard-human: Simulates a highly skilled human player who occasionally makes mistakes.
 
-Hard-Default: A standalone version of a specific algorithm (defaultTurn) used by the Expert bot. It acts as an upgraded version of the Medium bot.
+- Hard-Default: A standalone version of a specific algorithm (defaultTurn) used by the Expert bot. It acts as an upgraded version of the Medium bot.
 
-Expert: Plays the perfect game. It is impossible to defeat.
+- Expert: Plays the perfect game. It is impossible to defeat.
 
 # File Structure & Architecture
 
