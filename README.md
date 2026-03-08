@@ -8,7 +8,7 @@ Instead of relying on predefined, sequential behaviors (like always starting in 
 ### There are 6 distinct bots, ranging from completely random to playing perfect:
 
 
-Very Easy: Places tokens in random available spots on the board.
+- Very Easy: Places tokens in random available spots on the board.
 
 - Easy: Attempts to build a straight line of tokens.
 
