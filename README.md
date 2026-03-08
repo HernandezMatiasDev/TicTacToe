@@ -2,7 +2,7 @@
 
 This project features a Tic-Tac-Toe game board and 6 AI bots, each with a different difficulty level.
 
-Instead of relying on predefined, sequential behaviors (like always starting in the center), these bots dynamically analyze the current state of the board to decide where to place their tokens. Building the logic for these decision-making processes was a highly interesting programming challenge.
+Instead of relying on predefined, sequential behaviors (like always starting in the center), these bots dynamically analyze the current state of the board to decide where to place their tokens. Building the logic for these decision-making processes was a highly interesting programming challenge.<br>
 
  
 ## The Bots
@@ -20,17 +20,17 @@ Instead of relying on predefined, sequential behaviors (like always starting in 
 - Hard-Default: A standalone version of a specific algorithm (defaultTurn) used by the Expert bot. It acts as an upgraded version of the Medium bot.
 
 - Expert: Plays the perfect game. It is impossible to defeat.
-
+<br>
 # File Structure & Architecture
 
  
 ### Game.cs: 
 The main game board. The board is represented by a 3x3 nullable boolean matrix. True represents one player, False represents the other, and null represents an empty space. This class also manages turn order, who starts the game, and checks for win/draw conditions.
-
+<br>
  
 ### Form1.cs: 
 This file is only included to provide a graphical user interface (GUI) and make it easier to play against the bots. It is not an important part of the core project logic and may contain errors.
-
+<br>
 
 ## Bot Logic
 
@@ -62,17 +62,24 @@ Inherits from BotEasy. The logic is identical to BotEasy, except it also evaluat
 | BotHard vs BotEasy | 84.00% | 9.70% |
  
 
+<br>
+
+
 ### botHard-Default.cs: 
 (Class: BotHardDefault). Inherits from BotExpert. This was built simply to isolate and test the defaultTurn function of the Expert bot. It plays surprisingly well, slightly outperforming the BotHard human.
 
- 
+<br>
+
+
 | Matchup | Bot 1 Win Rate | Bot 2 Win Rate |
 | :--- | :--- | :--- |
 | BotHardDefault vs BotEasy | 83.00% | 8.70% |
 | BotHardDefault vs BotMedium | 41.50% | 14.50% |
 | BotHardDefault vs BotHard | 29.90% | 25.60% |
 | BotHardDefault vs BotExpert | 0.00% | 38.00% |
- 
+
+<br>
+
 
 ### botExpert.cs 
 Inherits from BotEasy. This was the most difficult bot to develop because the goal was perfect play; it had to be impossible to beat.
