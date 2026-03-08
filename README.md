@@ -35,7 +35,7 @@ BotVeryEasy.cs: Inherits from Bot. It randomly selects an available space on the
 
 BotEasy.cs: Inherits from Bot. This is a crucial file as it serves as the parent class for the more complex bots. It contains the logic to interpret the board and build straight lines. It first identifies "possible lines" (lines with no enemy tokens), checks which of those lines have the most friendly tokens, and randomly selects an available spot within those optimal lines.
 
-BotMedium.cs: Inherits from BotEasy. The logic is identical to BotEasy, except it also evaluates potential enemy lines. If the enemy has a line with 2 tokens and the bot does not have an immediate winning move, it blocking the enemy.
+BotMedium.cs: Inherits from BotEasy. The logic is identical to BotEasy, except it also evaluates potential enemy lines. If the enemy has a line with 2 tokens and the bot does not have an immediate winning move, it blocks the enemy.
 
 botHard-human.cs: (Class: BotHard). Inherits from Bot. Internally, it contains instances of BotExpert, BotMedium, and BotEasy. It has a 50% chance to play as Expert, 40% as Medium, and 10% as Easy. This combination makes it better than the Medium robot; the idea is that it looks like a "human" who knows how to play but can make mistakes.
 
