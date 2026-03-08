@@ -20,7 +20,9 @@ Instead of relying on predefined, sequential behaviors (like always starting in 
 - Hard-Default: A standalone version of a specific algorithm (defaultTurn) used by the Expert bot. It acts as an upgraded version of the Medium bot.
 
 - Expert: Plays the perfect game. It is impossible to defeat.
+- 
 <br>
+
 # File Structure & Architecture
 
  
@@ -30,6 +32,7 @@ The main game board. The board is represented by a 3x3 nullable boolean matrix. 
  
 ### Form1.cs: 
 This file is only included to provide a graphical user interface (GUI) and make it easier to play against the bots. It is not an important part of the core project logic and may contain errors.
+
 <br>
 
 ## Bot Logic
