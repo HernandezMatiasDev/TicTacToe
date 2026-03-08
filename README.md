@@ -19,7 +19,7 @@ Hard-Default: A standalone version of a specific algorithm (defaultTurn) used by
 
 Expert: Plays the perfect game. It is impossible to defeat.
 
-## File Structure & Architecture
+# File Structure & Architecture
 
 
 Game.cs: The main game board. The board is represented by a 3x3 nullable boolean matrix. True represents one player, False represents the other, and null represents an empty space. This class also manages turn order, who starts the game, and checks for win/draw conditions.
