@@ -21,7 +21,7 @@ Instead of relying on predefined, sequential behaviors (like always starting in 
 
 - Expert: Plays the perfect game. It is impossible to defeat.
   
-
+<br>
 
 # File Structure & Architecture
 
