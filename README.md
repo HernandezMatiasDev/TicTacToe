@@ -1,4 +1,5 @@
-Ta-Te-Ti: Bot Challenge
+Tic-Tac-Toe: Bot Challenge
+
 This project features a complete Tic-Tac-Toe (Ta-Te-Ti) game board and 6 AI bots, each with a different difficulty level.
 
 Instead of relying on predefined, sequential behaviors (like always starting in the center), these bots dynamically analyze the current state of the board to decide where to place their tokens. Building the logic for these decision-making processes was a highly interesting programming challenge.
