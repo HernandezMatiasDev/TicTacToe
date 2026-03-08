@@ -1,4 +1,4 @@
-Tic-Tac-Toe: Bot Challenge
+# Tic-Tac-Toe: Bot Challenge
 
 This project features a Tic-Tac-Toe game board and 6 AI bots, each with a different difficulty level.
 
@@ -19,7 +19,7 @@ Hard-Default: A standalone version of a specific algorithm (defaultTurn) used by
 
 Expert: Plays the perfect game. It is impossible to defeat.
 
-File Structure & Architecture
+## File Structure & Architecture
 
 
 Game.cs: The main game board. The board is represented by a 3x3 nullable boolean matrix. True represents one player, False represents the other, and null represents an empty space. This class also manages turn order, who starts the game, and checks for win/draw conditions.
@@ -27,7 +27,7 @@ Game.cs: The main game board. The board is represented by a 3x3 nullable boolean
 Form1.cs: This file is only included to provide a graphical user interface (GUI) and make it easier to play against the bots. It is not an important part of the core project logic and may contain errors.
 
 
-Bot Logic
+## Bot Logic
 
 Bot.cs: The abstract base class for all bots. It contains a 3x3 boolean matrix called GameState which represents the board. Bots use this state to make their decisions. It includes an abstract function called playing, which is called to trigger the bot's turn.
 
@@ -85,7 +85,8 @@ While it's sometimes impossible to completely avoid giving the enemy a somewhat 
 
 Example: Imagine the bot has a token at 0,1 and the enemy has one at 1,0. If the bot places a token at 0,2 to build a straight line, it forces the enemy to defend at 0,0. By forcing the enemy into 0,0, we give them a dominant position and end up losing the game. The bot calculates to avoid these scenarios.
 
-Testing and Debugging
+##Testing and Debugging
+
 The files in the "Program Test" folder are scripts that I created with the help of Gemini AI specifically for testing the bots.
 
 To use these scripts, you need to replace your main Program.cs file with one of these and change the file extension from .txt to .cs.
