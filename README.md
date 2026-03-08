@@ -50,7 +50,7 @@ Inherits from Bot. This is a crucial file as it serves as the parent class for t
 
  
 ### BotMedium.cs: 
-Inherits from BotEasy. The logic is identical to BotEasy, except it also evaluates potential enemy lines. If the enemy has a line with 2 tokens and the bot does not have an immediate winning move, it blocks the enemy.
+Inherits from BotEasy. The logic is identical to BotEasy, except it also evaluates potential enemy lines. If the enemy has a line with two tokens and the bot does not have an immediate winning move, it blocks the enemy.
 
 ### botHard-human.cs: 
 (Class: BotHard). Inherits from Bot. Internally, it contains instances of BotExpert, BotMedium, and BotEasy. It has a 50% chance to play as Expert, 40% as Medium, and 10% as Easy. This combination makes it better than the Medium robot; the idea is that it looks like a "human" who knows how to play but can make mistakes.
@@ -86,7 +86,7 @@ Inherits from BotEasy. The logic is identical to BotEasy, except it also evaluat
 
 ### botExpert.cs 
 Inherits from BotEasy. This was the most difficult bot to develop because the goal was perfect play; it had to be impossible to beat.
-To achieve this, I first divided the early-game logic into two distinct states: Attack (when the bot plays first) and Defense (when the opponent plays first). I explicitly hardcoded the behavior for the first 2 turns as an attacker, and the 1st turn as a defender, because the early game lacks a mathematical pattern simple enough to automate effectively.
+To achieve this, I first divided the early-game logic into two distinct states: Attack (when the bot plays first) and Defense (when the opponent plays first). I explicitly hardcoded the behavior for the first two turns as an attacker, and the 1st turn as a defender, because the early game lacks a mathematical pattern simple enough to automate effectively.
 
 First Turn (Attack): The bot simply places a token on the board, prioritizing the corners as they represent the strongest positions.
 
