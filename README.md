@@ -38,18 +38,18 @@ BotMedium.cs: Inherits from BotEasy. The logic is identical to BotEasy, except i
 
 botHard-human.cs: (Class: BotHard). Inherits from Bot. Internally, it contains instances of BotExpert, BotMedium, and BotEasy. It has a 50% chance to play as Expert, 40% as Medium, and 10% as Easy. This combination makes it better than the Medium robot; the idea is that it looks like a "human" who knows how to play but can make mistakes.
 
-Matchup	Bot 1 Win Rate	Bot 2 Win Rate
-BotHard vs BotExpert	0.00%	38.10%
-BotHard vs BotMedium	36.20%	20.20%
-BotHard vs BotEasy	84.00%	9.70%
+Matchup,Bot 1 Win Rate,Bot 2 Win Rate
+BotHard vs BotExpert,0.00%,38.10%
+BotHard vs BotMedium,36.20%,20.20%
+BotHard vs BotEasy,84.00%,9.70%
 
 botHard-Default.cs: (Class: BotHardDefault). Inherits from BotExpert. This was built simply to isolate and test the defaultTurn function of the Expert bot. It plays surprisingly well, slightly outperforming the BotHard human.
 
-MatchupBot 1 Win RateBot 2 Win Rate 
-BotHardDefault vs BotEasy	83.00%	8.70%
-BotHardDefault vs BotMedium	41.50%	14.50%
-BotHardDefault vs BotHard	29.90%	25.60%
-BotHardDefault vs BotExpert	0.00%	38.00%
+Matchup,Bot 1 Win Rate,Bot 2 Win Rate
+BotHardDefault vs BotEasy,83.00%,8.70%
+BotHardDefault vs BotMedium,41.50%,14.50%
+BotHardDefault vs BotHard,29.90%,25.60%
+BotHardDefault vs BotExpert,0.00%,38.00%
 
 botExpert.cs Inherits from BotEasy. This was the most difficult bot to develop because the goal was perfect play; it had to be impossible to beat.
 To achieve this, I first divided the early-game logic into two distinct states: Attack (when the bot plays first) and Defense (when the opponent plays first). I explicitly hardcoded the behavior for the first 2 turns as an attacker, and the 1st turn as a defender, because the early game lacks a mathematical pattern simple enough to automate effectively.
