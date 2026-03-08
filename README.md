@@ -1,6 +1,6 @@
 Tic-Tac-Toe: Bot Challenge
 
-This project features a complete Tic-Tac-Toe game board and 6 AI bots, each with a different difficulty level.
+This project features a Tic-Tac-Toe game board and 6 AI bots, each with a different difficulty level.
 
 Instead of relying on predefined, sequential behaviors (like always starting in the center), these bots dynamically analyze the current state of the board to decide where to place their tokens. Building the logic for these decision-making processes was a highly interesting programming challenge.
 
@@ -11,7 +11,7 @@ Very Easy: Places tokens in random available spots on the board.
 
 Easy: Attempts to build a straight line of tokens.
 
-Medium: Attempts to build a straight line, but will actively block the opponent if they are about to win (two tokens in a row).
+Medium: Attempts to build a straight line, but will block the opponent if they are about to win (two tokens in a row).
 
 Hard-human: Simulates a highly skilled human player who occasionally makes mistakes.
 
