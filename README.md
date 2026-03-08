@@ -4,7 +4,7 @@ This project features a Tic-Tac-Toe game board and 6 AI bots, each with a differ
 
 Instead of relying on predefined, sequential behaviors (like always starting in the center), these bots dynamically analyze the current state of the board to decide where to place their tokens. Building the logic for these decision-making processes was a highly interesting programming challenge.
 
-The Bots
+## The Bots
 There are 6 distinct bots, ranging from completely random to playing perfect:
 
 Very Easy: Places tokens in random available spots on the board.
@@ -29,15 +29,20 @@ Form1.cs: This file is only included to provide a graphical user interface (GUI)
 
 ## Bot Logic
 
-Bot.cs: The abstract base class for all bots. It contains a 3x3 boolean matrix called GameState which represents the board. Bots use this state to make their decisions. It includes an abstract function called playing, which is called to trigger the bot's turn.
+### Bot.cs: 
+The abstract base class for all bots. It contains a 3x3 boolean matrix called GameState which represents the board. Bots use this state to make their decisions. It includes an abstract function called playing, which is called to trigger the bot's turn.
 
-BotVeryEasy.cs: Inherits from Bot. It randomly selects an available space on the board. While the approach of picking a random spot and checking if it's empty is technically inefficient, the speed of C# and the small 3x3 board size make it practically instantaneous. An alternative would be scanning the matrix to store available spots first, but for this scale, random selection is just as fast or faster.
+### BotVeryEasy.cs: 
+Inherits from Bot. It randomly selects an available space on the board. While the approach of picking a random spot and checking if it's empty is technically inefficient, the speed of C# and the small 3x3 board size make it practically instantaneous. An alternative would be scanning the matrix to store available spots first, but for this scale, random selection is just as fast or faster.
 
-BotEasy.cs: Inherits from Bot. This is a crucial file as it serves as the parent class for the more complex bots. It contains the logic to interpret the board and build straight lines. It first identifies "possible lines" (lines with no enemy tokens), checks which of those lines have the most friendly tokens, and randomly selects an available spot within those optimal lines.
+### BotEasy.cs: 
+Inherits from Bot. This is a crucial file as it serves as the parent class for the more complex bots. It contains the logic to interpret the board and build straight lines. It first identifies "possible lines" (lines with no enemy tokens), checks which of those lines have the most friendly tokens, and randomly selects an available spot within those optimal lines.
 
-BotMedium.cs: Inherits from BotEasy. The logic is identical to BotEasy, except it also evaluates potential enemy lines. If the enemy has a line with 2 tokens and the bot does not have an immediate winning move, it blocks the enemy.
+### BotMedium.cs: 
+Inherits from BotEasy. The logic is identical to BotEasy, except it also evaluates potential enemy lines. If the enemy has a line with 2 tokens and the bot does not have an immediate winning move, it blocks the enemy.
 
-botHard-human.cs: (Class: BotHard). Inherits from Bot. Internally, it contains instances of BotExpert, BotMedium, and BotEasy. It has a 50% chance to play as Expert, 40% as Medium, and 10% as Easy. This combination makes it better than the Medium robot; the idea is that it looks like a "human" who knows how to play but can make mistakes.
+### botHard-human.cs: 
+(Class: BotHard). Inherits from Bot. Internally, it contains instances of BotExpert, BotMedium, and BotEasy. It has a 50% chance to play as Expert, 40% as Medium, and 10% as Easy. This combination makes it better than the Medium robot; the idea is that it looks like a "human" who knows how to play but can make mistakes.
 
 | Matchup | Bot 1 Win Rate | Bot 2 Win Rate |
 | :--- | :--- | :--- |
@@ -45,7 +50,8 @@ botHard-human.cs: (Class: BotHard). Inherits from Bot. Internally, it contains i
 | BotHard vs BotMedium | 36.20% | 20.20% |
 | BotHard vs BotEasy | 84.00% | 9.70% |
 
-botHard-Default.cs: (Class: BotHardDefault). Inherits from BotExpert. This was built simply to isolate and test the defaultTurn function of the Expert bot. It plays surprisingly well, slightly outperforming the BotHard human.
+### botHard-Default.cs: 
+(Class: BotHardDefault). Inherits from BotExpert. This was built simply to isolate and test the defaultTurn function of the Expert bot. It plays surprisingly well, slightly outperforming the BotHard human.
 
 | Matchup | Bot 1 Win Rate | Bot 2 Win Rate |
 | :--- | :--- | :--- |
@@ -54,7 +60,8 @@ botHard-Default.cs: (Class: BotHardDefault). Inherits from BotExpert. This was b
 | BotHardDefault vs BotHard | 29.90% | 25.60% |
 | BotHardDefault vs BotExpert | 0.00% | 38.00% |
 
-botExpert.cs Inherits from BotEasy. This was the most difficult bot to develop because the goal was perfect play; it had to be impossible to beat.
+### botExpert.cs 
+Inherits from BotEasy. This was the most difficult bot to develop because the goal was perfect play; it had to be impossible to beat.
 To achieve this, I first divided the early-game logic into two distinct states: Attack (when the bot plays first) and Defense (when the opponent plays first). I explicitly hardcoded the behavior for the first 2 turns as an attacker, and the 1st turn as a defender, because the early game lacks a mathematical pattern simple enough to automate effectively.
 
 First Turn (Attack): The bot simply places a token on the board, prioritizing the corners as they represent the strongest positions.
@@ -85,7 +92,7 @@ While it's sometimes impossible to completely avoid giving the enemy a somewhat 
 
 Example: Imagine the bot has a token at 0,1 and the enemy has one at 1,0. If the bot places a token at 0,2 to build a straight line, it forces the enemy to defend at 0,0. By forcing the enemy into 0,0, we give them a dominant position and end up losing the game. The bot calculates to avoid these scenarios.
 
-### Testing and Debugging
+## Testing and Debugging
 
 The files in the "Program Test" folder are scripts that I created with the help of Gemini AI specifically for testing the bots.
 
