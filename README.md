@@ -129,7 +129,7 @@ The files in the "Program Test" folder are scripts that I created with the help 
 To use these scripts, you need to replace your main Program.cs file with one of these and change the file extension from .txt to .cs.
 
 Program - BotVsBot:
-With this script, you can match the bots against each other. You can view the win rate percentages and draws. Also, by setting the repasarVictorias configuration to True and using repasarBot to select the specific bot you want to review, you can watch some very interesting things unfold—for example, seeing the "Very Easy" bot execute a perfect game purely by random chance!
+With this script, you can match the bots against each other. You can view the win rate and draws percentages. Also, by setting the "repasarVictorias" configuration to True and using "repasarBot" to select the specific bot you want to review, you can watch some very interesting things unfold—for example, seeing the "Very Easy" bot execute a perfect game purely by random chance!
 
 Program - TestBot:
 With this script, you can play Ta-Te-Ti directly through the console, which makes debugging much easier.
