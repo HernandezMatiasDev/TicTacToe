@@ -94,6 +94,20 @@ Second Turn (Attack) & Board Normalization: This is where the logic gets interes
 
 First Turn (Defense): This works very similarly to the second turn of an attack, but it's much simpler to calculate since there is only one enemy token on an otherwise empty board.
 
+<pre>
+1. Real Game A (Bot at 2,2):        2. Real Game B (Bot at 0,2):        3. Real Game C (Bot at 2,0):        4. Normalized View (Bot at 0,0):
+      0   1   2                           0   1   2                           0   1   2                           0   1   2
+    +---+---+---+                       +---+---+---+                       +---+---+---+                       +---+---+---+
+  0 |   |   |   |                     0 |   |   | B |                     0 |   |   |   |                     0 | B |   |   |
+    +---+---+---+                       +---+---+---+                       +---+---+---+                       +---+---+---+
+  1 |   | E |   |                     1 |   | E |   |                     1 |   | E |   |                     1 |   | E |   |
+    +---+---+---+                       +---+---+---+                       +---+---+---+                       +---+---+---+
+  2 |   |   | B |                     2 |   |   |   |                     2 | B |   |   |                     2 |   |   |   |
+    +---+---+---+                       +---+---+---+                       +---+---+---+                       +---+---+---+
+   (Bottom-Right)                      (Top-Right)                         (Bottom-Left)                   (Bot sees them as identical)
+</pre>
+
+
 ### Dynamic Logic (defaultTurn):
 
 
