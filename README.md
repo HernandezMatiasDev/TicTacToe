@@ -147,6 +147,38 @@ But if we place our token in the position that benefits the enemy the least, for
    (B=Bot, E=Enemy)                        (Bot threat)                          (We have control)                       (Double attack!)                        (Blocks column 1)                       (Diagonal win)
 </pre>
 
+There are cases where it is impossible not to benefit the enemy, but the goal is always to help them as little as possible. 
+
+For example, consider a scenario where the enemy has tokens at the opposite corners (0,0) and (2,2), and the bot is at the center (1,1). If the bot plays in any available corner, it hands the enemy a double attack, resulting in an inevitable loss. However, if the bot plays on an edge, it forces a sequence of blocks that leads to a tie.
+
+<pre>
+1. Initial State:                   2. Bot plays corner (0,2):          3. Enemy blocks (2,0):              4. Bot defends (1,0):               5. Enemy wins (2,1):
+      0   1   2                           0   1   2                           0   1   2                           0   1   2                           0   1   2
+    +---+---+---+                       +---+---+---+                       +---+---+---+                       +---+---+---+                       +---+---+---+
+  0 | E |   |   |                     0 | E |   | B*|                     0 | E |   | B |                     0 | E |   | B |                     0 | E |   | B |
+    +---+---+---+                       +---+---+---+                       +---+---+---+                       +---+---+---+                       +---+---+---+
+  1 |   | B |   |                     1 |   | B |   |                     1 |   | B |   |                     1 | B*| B |   |                     1 | B | B |   |
+    +---+---+---+                       +---+---+---+                       +---+---+---+                       +---+---+---+                       +---+---+---+
+  2 |   |   | E |                     2 |   |   | E |                     2 | E*|   | E |                     2 | E |   | E |                     2 | E | E*| E |
+    +---+---+---+                       +---+---+---+                       +---+---+---+                       +---+---+---+                       +---+---+---+
+   (B=Bot, E=Enemy)                    (Bot threat)                     (Enemy Double Attack!)                (Blocks column 0)                   (Row 2 win)
+</pre>
+
+The bot would take the position that least benefits the enemy:
+
+<pre>
+1. Initial State:                   2. Bot plays edge (0,1):            3. Enemy blocks (2,1):              4. Bot defends (2,0):               5. Enemy blocks (0,2):
+      0   1   2                           0   1   2                           0   1   2                           0   1   2                           0   1   2
+    +---+---+---+                       +---+---+---+                       +---+---+---+                       +---+---+---+                       +---+---+---+
+  0 | E |   |   |                     0 | E | B*|   |                     0 | E | B |   |                     0 | E | B |   |                     0 | E | B | E*|
+    +---+---+---+                       +---+---+---+                       +---+---+---+                       +---+---+---+                       +---+---+---+
+  1 |   | B |   |                     1 |   | B |   |                     1 |   | B |   |                     1 |   | B |   |                     1 |   | B |   |
+    +---+---+---+                       +---+---+---+                       +---+---+---+                       +---+---+---+                       +---+---+---+
+  2 |   |   | E |                     2 |   |   | E |                     2 |   | E*| E |                     2 | B*| E | E |                     2 | B | E | E |
+    +---+---+---+                       +---+---+---+                       +---+---+---+                       +---+---+---+                       +---+---+---+
+   (B=Bot, E=Enemy)                    (Bot threat)                       (Enemy blocks)                      (Bot blocks & threatens)            (Forced tie path)
+</pre>
+
 <br>
 
 
