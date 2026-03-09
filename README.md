@@ -134,6 +134,21 @@ Imagine the bot has a token at 0,1 and the enemy has one at 1,0. If the bot plac
     +---+---+---+        +---+---+---+        +---+---+---+
                           (Bot threat)       (Enemy takes control)
 ```
+
+<pre>
+1. Initial State:       2. Bot plays (0,2):    3. Enemy forced to (0,0):
+   (B=Bot, E=Enemy)
+
+      0   1   2            0   1   2            0   1   2
+    +---+---+---+        +---+---+---+        +---+---+---+
+  0 |   | B |   |      0 |   | B | B*|      0 | E*| B | B |
+    +---+---+---+        +---+---+---+        +---+---+---+
+  1 | E |   |   |      1 | E |   |   |      1 | E |   |   |
+    +---+---+---+        +---+---+---+        +---+---+---+
+  2 |   |   |   |      2 |   |   |   |      2 |   |   |   |
+    +---+---+---+        +---+---+---+        +---+---+---+
+                          (Bot threat)       (Enemy takes control)
+</pre>
 <br>
 
 ## Testing and Debugging
