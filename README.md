@@ -151,6 +151,24 @@ Imagine the bot has a token at 0,1 and the enemy has one at 1,0. If the bot plac
 </pre>
 <br>
 
+**1. Initial State:**
+(Bot at 0,1 | Enemy at 1,0)
+⬜ 🔵 ⬜
+🔴 ⬜ ⬜
+⬜ ⬜ ⬜
+
+**2. Bot plays (0,2):**
+(Threatens to win on top row)
+⬜ 🔵 🔵
+🔴 ⬜ ⬜
+⬜ ⬜ ⬜
+
+**3. Enemy forced to (0,0):**
+(Enemy blocks and gains a dominant position)
+🔴 🔵 🔵
+🔴 ⬜ ⬜
+⬜ ⬜ ⬜
+
 ## Testing and Debugging
 
 The files in the "Program Test" folder are scripts that I created with the help of Gemini AI specifically for testing the bots.
