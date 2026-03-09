@@ -120,21 +120,6 @@ While it's sometimes impossible to completely avoid giving the enemy a somewhat 
 ### Example: 
 Imagine the bot has a token at 0,1 and the enemy has one at 1,0. If the bot places a token at 0,2 to build a straight line, it forces the enemy to defend at 0,0. By forcing the enemy into 0,0, we give them a dominant position and end up losing the game. The bot calculates to avoid these scenarios.
 
-```
-1. Initial State:       2. Bot plays (0,2):    3. Enemy forced to (0,0):
-   (B=Bot, E=Enemy)
-
-      0   1   2            0   1   2            0   1   2
-    +---+---+---+        +---+---+---+        +---+---+---+
-  0 |   | B |   |      0 |   | B | B*|      0 | E*| B | B |
-    +---+---+---+        +---+---+---+        +---+---+---+
-  1 | E |   |   |      1 | E |   |   |      1 | E |   |   |
-    +---+---+---+        +---+---+---+        +---+---+---+
-  2 |   |   |   |      2 |   |   |   |      2 |   |   |   |
-    +---+---+---+        +---+---+---+        +---+---+---+
-                          (Bot threat)       (Enemy takes control)
-```
-
 <pre>
 1. Initial State:       2. Bot plays (0,2):    3. Enemy forced to (0,0):
    (B=Bot, E=Enemy)
@@ -151,23 +136,7 @@ Imagine the bot has a token at 0,1 and the enemy has one at 1,0. If the bot plac
 </pre>
 <br>
 
-**1. Initial State:**
-(Bot at 0,1 | Enemy at 1,0)
-⬜ 🔵 ⬜
-🔴 ⬜ ⬜
-⬜ ⬜ ⬜
 
-**2. Bot plays (0,2):**
-(Threatens to win on top row)
-⬜ 🔵 🔵
-🔴 ⬜ ⬜
-⬜ ⬜ ⬜
-
-**3. Enemy forced to (0,0):**
-(Enemy blocks and gains a dominant position)
-🔴 🔵 🔵
-🔴 ⬜ ⬜
-⬜ ⬜ ⬜
 
 ## Testing and Debugging
 
