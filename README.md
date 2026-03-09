@@ -107,6 +107,7 @@ First Turn (Defense): This works very similarly to the second turn of an attack,
    (Bottom-Right)                      (Top-Right)                         (Bottom-Left)                   (Bot sees them as identical)
 </pre>
 
+By normalizing the board, we reduced the 72 possible combinations down to just 14 in the code.
 
 ### Dynamic Logic (defaultTurn):
 
