@@ -131,6 +131,22 @@ Imagine the bot has a token at 0,1 and the enemy has one at 1,0. If the bot plac
     +---+---+---+                       +---+---+---+                       +---+---+---+                       +---+---+---+                       +---+---+---+                       +---+---+---+                       +---+---+---+
    (B=Bot, E=Enemy)                     (Bot threat)                    (Enemy takes control)                 (Blocks column 0)                    (Double attack!)                    (Blocks row 1)                      (Diagonal win)
 </pre>
+
+But if we place our token in the position that benefits the enemy the least, for example at (0,0), we force them to defend without gaining an advantage. Now we have the control. In the next turn, we can place a token at (1,1) to generate a double attack. The enemy is forced to defend at (2,1), allowing us to win the game at (2,2).
+
+<pre>
+1. Initial State:                       2. Bot plays (0,0):                     3. Enemy defends (0,2):                 4. Bot plays (1,1):                     5. Enemy defends (2,1):                 6. Bot wins (2,2):
+      0   1   2                               0   1   2                               0   1   2                               0   1   2                               0   1   2                               0   1   2
+    +---+---+---+                           +---+---+---+                           +---+---+---+                           +---+---+---+                           +---+---+---+                           +---+---+---+
+  0 |   | B |   |                         0 | B*| B |   |                         0 | B | B | E*|                         0 | B | B | E |                         0 | B | B | E |                         0 | B | B | E |
+    +---+---+---+                           +---+---+---+                           +---+---+---+                           +---+---+---+                           +---+---+---+                           +---+---+---+
+  1 | E |   |   |                         1 | E |   |   |                         1 | E |   |   |                         1 | E | B*|   |                         1 | E | B |   |                         1 | E | B |   |
+    +---+---+---+                           +---+---+---+                           +---+---+---+                           +---+---+---+                           +---+---+---+                           +---+---+---+
+  2 |   |   |   |                         2 |   |   |   |                         2 |   |   |   |                         2 |   |   |   |                         2 |   | E*|   |                         2 |   | E | B*|
+    +---+---+---+                           +---+---+---+                           +---+---+---+                           +---+---+---+                           +---+---+---+                           +---+---+---+
+   (B=Bot, E=Enemy)                        (Bot threat)                          (We have control)                       (Double attack!)                        (Blocks column 1)                       (Diagonal win)
+</pre>
+
 <br>
 
 
