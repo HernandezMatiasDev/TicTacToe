@@ -121,18 +121,16 @@ While it's sometimes impossible to completely avoid giving the enemy a somewhat 
 Imagine the bot has a token at 0,1 and the enemy has one at 1,0. If the bot places a token at 0,2 to build a straight line, it forces the enemy to defend at 0,0. By forcing the enemy into 0,0, we give them a dominant position and end up losing the game. The bot calculates to avoid these scenarios.
 
 <pre>
-1. Initial State:       2. Bot plays (0,2):    3. Enemy forced to (0,0):
-   (B=Bot, E=Enemy)
-
-      0   1   2            0   1   2            0   1   2
-    +---+---+---+        +---+---+---+        +---+---+---+
-  0 |   | B |   |      0 |   | B | B*|      0 | E*| B | B |
-    +---+---+---+        +---+---+---+        +---+---+---+
-  1 | E |   |   |      1 | E |   |   |      1 | E |   |   |
-    +---+---+---+        +---+---+---+        +---+---+---+
-  2 |   |   |   |      2 |   |   |   |      2 |   |   |   |
-    +---+---+---+        +---+---+---+        +---+---+---+
-                          (Bot threat)       (Enemy takes control)
+1. Initial State:         2. Bot plays (0,2):       3. Enemy forced to (0,0): 4. Bot defends (2,0):     5. Enemy plays (1,1):     6. Bot defends (1,2):     7. Enemy wins (2,2):      
+      0   1   2                 0   1   2                 0   1   2                 0   1   2                 0   1   2                 0   1   2                 0   1   2           
+    +---+---+---+             +---+---+---+             +---+---+---+             +---+---+---+             +---+---+---+             +---+---+---+             +---+---+---+           
+  0 |   | B |   |           0 |   | B | B*|           0 | E*| B | B |           0 | E | B | B |           0 | E | B | B |           0 | E | B | B |           0 | E | B | B |           
+    +---+---+---+             +---+---+---+             +---+---+---+             +---+---+---+             +---+---+---+             +---+---+---+             +---+---+---+           
+  1 | E |   |   |           1 | E |   |   |           1 | E |   |   |           1 | E |   |   |           1 | E | E*|   |           1 | E | E | B*|           1 | E | E | B |           
+    +---+---+---+             +---+---+---+             +---+---+---+             +---+---+---+             +---+---+---+             +---+---+---+             +---+---+---+           
+  2 |   |   |   |           2 |   |   |   |           2 |   |   |   |           2 | B*|   |   |           2 | B |   |   |           2 | B |   |   |           2 | B |   | E*|           
+    +---+---+---+             +---+---+---+             +---+---+---+             +---+---+---+             +---+---+---+             +---+---+---+             +---+---+---+           
+   (B=Bot, E=Enemy)          (Bot threat)              (Enemy takes control)     (Blocks column 0)         (Double attack!)          (Blocks row 1)            (Diagonal win)            
 </pre>
 <br>
 
