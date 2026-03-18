@@ -112,13 +112,10 @@ namespace TaTeTi_1._0
 
         public bool newMove(byte row, byte col) 
         {   
-            if (DrawCont == 8)
-            {
-                isDraw = true;
-            }
-            DrawCont = DrawCont + 1;
+
             if (availableSlot(row,col))
             {
+                DrawCont = DrawCont + 1;
                 game[row, col] = player;
                 
                 if (isWin())
@@ -126,7 +123,7 @@ namespace TaTeTi_1._0
                     winer(player);
                     return false;
                 }
-                if (isDraw)
+                if (DrawCont == 9)
                 {
                     draw();
                     return false;
