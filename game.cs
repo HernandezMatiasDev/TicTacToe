@@ -12,8 +12,7 @@ namespace TaTeTi_1._0
         private bool playerInit;
         private bool player;
         private int DrawCont;
-        private bool isDraw;
-        
+
         public event Action OnGameEnd;
 
 
@@ -66,7 +65,6 @@ namespace TaTeTi_1._0
             player1Score = 0;
             player2Score = 0;
             DrawCont = 0;
-            isDraw = false;
         }
 
         private bool availableSlot(byte row, byte col)
@@ -163,7 +161,6 @@ namespace TaTeTi_1._0
             playerInit = !playerInit;
             this.player = playerInit;
             DrawCont = 0;
-            isDraw = false;
             gameReset();
             OnGameEnd?.Invoke();
         }
@@ -173,7 +170,6 @@ namespace TaTeTi_1._0
             playerInit = !playerInit;
             player = playerInit;
             DrawCont = 0;
-            isDraw = false;
             gameReset();
             OnGameEnd?.Invoke();
         }
